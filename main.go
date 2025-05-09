@@ -42,7 +42,7 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Считываем содержимое файла и суммируем числа
-	sum, err := sumNumbersInFile(file)
+	sum, err := scanDataAndCalc(file)
 	if err != nil {
 		http.Error(w, "Error processing file", http.StatusInternalServerError)
 		return
@@ -54,7 +54,7 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "")
 }
 
-func sumNumbersInFile(file io.Reader) (int, error) {
+func scanDataAndCalc(file io.Reader) (int, error) {
 	var sum int
 	scanner := bufio.NewScanner(file)
 
